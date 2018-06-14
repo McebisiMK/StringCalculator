@@ -157,6 +157,22 @@ namespace StringCalculatorKata
         [TestCase("//[;;][%%]\n4;;2%%8", 14)]
         [TestCase("//[***][%%]\n4***2%%8***10", 24)]
         [TestCase("//[;;][...]\n4;;2...8...1001", 14)]
+        public void Add_GivenStringOfNumbersSeparatedByTwoDelimitersInsideBrackets_ShouldReturnTheSumOfThoseNumbers(string number, int expected)
+        {
+            //-------------------Arrange--------------------
+            var stringCalculator = CreateStringCalculator();
+
+            //-------------------Act------------------------
+            var actual = stringCalculator.Add(number);
+
+            //-------------------Assert---------------------
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestCase("//[;;][...][%%]\n4;;2...8...1001%%4", 18)]
+        [TestCase("//[^^][...][%%]\n4^^6%%8...1001%%4", 22)]
+        [TestCase("//[##][--][%%]\n4##10--8##100%%4", 126)]
         public void Add_GivenStringOfNumbersSeparatedByMultipleDelimitersInsideBrackets_ShouldReturnTheSumOfThoseNumbers(string number, int expected)
         {
             //-------------------Arrange--------------------

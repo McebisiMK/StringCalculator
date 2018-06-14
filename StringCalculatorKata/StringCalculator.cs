@@ -54,14 +54,14 @@ namespace StringCalculatorKata
 
         private string DelimiterIsGiven(string number)
         {
-            var specifiedDelimiter = number.Substring(3).Trim();
+            var numbers = number.Substring(3).Trim();
             var haveDelimeter = number[2].ToString();
             if (haveDelimeter.Equals("["))
             {
-                var length = number.LastIndexOf("]") - 3;
-                var delimite = number.Substring(3, length);
-                var delimiters = (delimite.Replace("][", "/").Trim()).Split('/');
-                foreach (var item in delimiters)
+                var length = numbers.LastIndexOf("]");
+                var delimiters = numbers.Substring(0, length);
+                var splittedDelimiters = (delimiters.Replace("][", "/").Trim()).Split('/');
+                foreach (var item in splittedDelimiters)
                 {
                     number = (number.Substring(number.LastIndexOf("]") + 1).Trim()).Replace(item, ",");
                 }
@@ -69,7 +69,7 @@ namespace StringCalculatorKata
             else
             {
                 var delimiter = Char.Parse(number.Substring(2, 1));
-                number = specifiedDelimiter.Replace(delimiter, ',');
+                number = numbers.Replace(delimiter, ',');
             }
 
             return number;
