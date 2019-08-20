@@ -34,9 +34,9 @@ namespace StringCalculator_Library
 
         private IEnumerable<string> GetNumbers(string input)
         {
-            var regexNumbers = Regex.Matches(input, @"-?[0-9]*\.?[0-9]+");
+            var stringNumbers = Regex.Matches(input, @"-?[0-9]*\.?[0-9]+");
 
-            return regexNumbers.Cast<Match>().Select(match => match.Value) ;
+            return stringNumbers.Cast<Match>().Select(match => match.Value) ;
         }
-    }
+    } 
 }
