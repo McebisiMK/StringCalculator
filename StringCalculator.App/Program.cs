@@ -1,4 +1,5 @@
 ﻿using System;
+using Autofac;
 using StringCalculator_Library;
 using StringCalculator_Library.Exceptions;
 
@@ -16,7 +17,8 @@ namespace StringCalculator_App
                     Console.WriteLine("Enter your numbers in string");
                     var input = Console.ReadLine();
 
-                    var stringCalculator = new StringCalculator();
+                    var container = Container();
+                    var stringCalculator = container.Resolve<IStringCalculator>();
 
                     var sum = stringCalculator.Add(input);
                     Console.WriteLine();
@@ -32,13 +34,21 @@ namespace StringCalculator_App
                     Console.WriteLine();
                     Console.WriteLine(exception.Message);
                 }
-                
+
                 Console.WriteLine();
                 Console.WriteLine("Press 'Y' to continue with calculation");
                 terminator = Console.ReadLine();
                 Console.WriteLine();
             }
             Console.ReadKey();
+        }
+
+        private static IContainer Container()
+        {
+            var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterModule<Modules>();
+
+            return containerBuilder.Build();
         }
     }
 }
