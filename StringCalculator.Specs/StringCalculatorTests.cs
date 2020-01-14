@@ -2,6 +2,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using StringCalculator_Library;
 using StringCalculator_Library.Exceptions;
+using StringCalculator_Library.Validations;
 
 namespace StringCalculator_Specs
 {
@@ -87,7 +88,7 @@ namespace StringCalculator_Specs
         [TestCase("10.0,0.1", 10.1)]
         [TestCase("101.00,01.50\n10", 112.50)]
         [TestCase("445.99 0.01\n14#15", 475.00)]
-        [TestCase("100.99\t1001.01\n458#852", 2412.00)]
+        [TestCase("100.99\t101.01\n458#852", 1512.00)]
         public void Add_Given_String_Of_Numbers_Separated_By_Any_Delimeter_Should_Return_Their_Sum(string input, double expectedSum)
         {
             //----------------------Arrange--------------------------
@@ -116,9 +117,26 @@ namespace StringCalculator_Specs
             actual.Message.Should().Be($"Negative numbers are not allowed: ({negatives})");
         }
 
+        [TestCase("1001\n10.0,0.1", 10.1)]
+        [TestCase("101.00,100.2;01.50;2000\n10", 212.70)]
+        [TestCase("445.99/1000.01/0.01\n14#15", 475.00)]
+        [TestCase("100.99/1001.01\n458#852", 1410.99)]
+        public void Add_Given_String_Of_Numbers_With_Numbers_Greater_1000_Should_Ignore_Those_Numbers_And_Return_Sum_Of_Other_Numbers(string input, double expectedSum)
+        {
+            //------------------------Arrange----------------------------
+            var stringCalculator = CreateStringCalculator();
+
+            //------------------------Act--------------------------------
+            var actual = stringCalculator.Add(input);
+
+            //------------------------Assert-----------------------------
+            actual.Should().Be(expectedSum);
+        }
+
         private static StringCalculator CreateStringCalculator()
         {
-            return new StringCalculator();
+            var validator = new Validator();
+            return new StringCalculator(validator);
         }
     }
 }
