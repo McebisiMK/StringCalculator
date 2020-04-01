@@ -11,7 +11,7 @@ namespace StringCalculator_Library.Validations
     {
         public IEnumerable<double> Validate(IEnumerable<string> stringNumbers)
         {
-            var numbers = ConvertToNumber(stringNumbers);
+            var numbers = ConvertToNumbers(stringNumbers);
             if (!numbers.Any())
                 throw new InvalidInputException();
 
@@ -21,7 +21,7 @@ namespace StringCalculator_Library.Validations
                         throw new NegativeNumberException(negatives) : numbers;
         }
 
-        private List<double> ConvertToNumber(IEnumerable<string> stringNumbers)
+        private List<double> ConvertToNumbers(IEnumerable<string> stringNumbers)
         {
             return stringNumbers
                     .Select(number => Double.Parse(number, CultureInfo.InvariantCulture))

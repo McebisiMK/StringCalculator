@@ -20,7 +20,7 @@ namespace StringCalculator_Library
             if (string.IsNullOrWhiteSpace(input))
                 throw new InvalidInputException();
 
-            var stringNumbers = GetNumbers(input);
+            var stringNumbers = SplitNumbers(input);
             var numbers = _validator.Validate(stringNumbers);
 
             return numbers
@@ -28,7 +28,7 @@ namespace StringCalculator_Library
                     .Sum();
         }
 
-        private List<string> GetNumbers(string input)
+        private List<string> SplitNumbers(string input)
         {
             var stringNumbers = Regex.Matches(input, @"-?[0-9]*\.?[0-9]+");
 
