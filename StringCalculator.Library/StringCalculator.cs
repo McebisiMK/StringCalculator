@@ -28,11 +28,14 @@ namespace StringCalculator_Library
                     .Sum();
         }
 
-        private IEnumerable<string> GetNumbers(string input)
+        private List<string> GetNumbers(string input)
         {
             var stringNumbers = Regex.Matches(input, @"-?[0-9]*\.?[0-9]+");
 
-            return stringNumbers.Cast<Match>().Select(match => match.Value);
+            return stringNumbers
+                    .Cast<Match>()
+                    .Select(match => match.Value)
+                    .ToList();
         }
     }
 }
