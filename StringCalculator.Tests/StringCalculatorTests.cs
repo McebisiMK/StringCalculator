@@ -4,7 +4,7 @@ using StringCalculator_Library;
 using StringCalculator_Library.Exceptions;
 using StringCalculator_Library.Validations;
 
-namespace StringCalculator_Specs
+namespace StringCalculator_Tests
 {
     [TestFixture]
     public class StringCalculatorTests
