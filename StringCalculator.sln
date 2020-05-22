@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculator.App", "Str
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculator.Library", "StringCalculator.Library\StringCalculator.Library.csproj", "{514EC502-50E6-4661-BCAD-0BE54EAEB188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculator.Specs", "StringCalculator.Specs\StringCalculator.Specs.csproj", "{0B4016D2-12C3-42D2-BF6C-7B47EF61D3B7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
