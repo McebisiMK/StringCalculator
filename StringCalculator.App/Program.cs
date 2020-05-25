@@ -24,12 +24,7 @@ namespace StringCalculator_App
                     Console.WriteLine();
                     Console.WriteLine($"Sum of given number(s): {sum}");
                 }
-                catch (NegativeNumberException exception)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine(exception.Message);
-                }
-                catch (InvalidInputException exception)
+                catch (Exception exception)
                 {
                     Console.WriteLine();
                     Console.WriteLine(exception.Message);
