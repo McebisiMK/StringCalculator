@@ -31,7 +31,7 @@ namespace StringCalculator_App
                 }
 
                 Console.WriteLine();
-                Console.WriteLine("Press 'Y' to continue with calculation");
+                Console.WriteLine("Press 'Y' to continue with calculation:");
                 terminator = Console.ReadLine();
                 Console.WriteLine();
             }
